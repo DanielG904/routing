@@ -5,6 +5,7 @@ import './App.css'
 import ContactPage from './ContactPage';
 import HomePage from './HomePage';
 import GalleryPage from './GalleryPage';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 function App() {
 
@@ -25,18 +26,24 @@ function App() {
     }
 
     return (
-        <>
-            <nav>
-                <ul>
-                    <li><button onClick={()=>handleNavClick("Home")}>Home</button></li>
-                    <li><button onClick={()=>handleNavClick("Contact")}>Contact</button></li>
-                    <li><button onClick={()=>handleNavClick("Gallery")}>Gallery</button></li>
-                </ul>
-            </nav>
-            <main style={{border: "1px solid grey", minHeight: "300px"}}>
-                {showPage()}
-            </main>
-        </>
+        <BrowserRouter>
+            <>
+                <nav>
+                    <ul>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/contact">Contact</Link></li>
+                        <li><Link hrtoef="/gallery">Gallery</Link></li>
+                    </ul>
+                </nav>
+                <main style={{border: "1px solid grey", minHeight: "300px"}}>
+                    <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/contact" element={<ContactPage />} />
+                        <Route path="/gallery" element={<GalleryPage />} />
+                    </Routes>
+                </main>
+            </>
+        </BrowserRouter>
     );
  
 }
